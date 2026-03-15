@@ -1,7 +1,7 @@
 from openai import OpenAI
-from app.config import OPEN_API_KEY, LLM_MODEL
+from app.config import OPENAI_API_KEY, LLM_MODEL
 
-client = OpenAI(api_key = OPEN_API_KEY)
+client = OpenAI(api_key = OPENAI_API_KEY)
 
 def get_answer(question: str, chunks: list[str]) -> str:
     """
