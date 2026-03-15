@@ -1,5 +1,5 @@
-from app.search.embedder import embed_query
-from app.vectorstore.chroma_client import query_collection
+from app.core.search.embedder import embed_query
+from app.core.vectorstore.chroma_client import query_collection
 
 def retrieve(query: str, n_results: int = 5) -> list[str]:
     """
@@ -10,3 +10,4 @@ def retrieve(query: str, n_results: int = 5) -> list[str]:
     query_embedding = embed_query(query)
     chunks = query_collection(query_embedding, n_results=n_results)
     return chunks
+
