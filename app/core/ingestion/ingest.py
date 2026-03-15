@@ -36,6 +36,6 @@ def ingest_file(file_path: str) -> dict:
 
     return {
         "doc_id": doc_id,
-        "chunks_ingested": len(chunks),
+        "chunks_ingested": len(chunks)
     }
 

@@ -1,0 +1,13 @@
+services:
+
+  app:
+    build: .
+    ports: 
+    - "8000:8000"
+    volumes:
+      - .:/app                      # live code reload without rebuilding
+      - ./chroma_db:/app/chroma_db  # persist vector store across restarts
+      -  ./data:/app/data           # persist uploaded documents
+
+    env_file:
+      - path: .env

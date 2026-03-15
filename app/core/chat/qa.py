@@ -1,4 +1,4 @@
-from openAI import OpenAI
+from openai import OpenAI
 from app.config import OPEN_API_KEY, LLM_MODEL
 
 client = OpenAI(api_key = OPEN_API_KEY)

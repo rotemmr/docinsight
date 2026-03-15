@@ -1,8 +1,8 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
-from api.routes.ingest import router as ingest_router
-from api.routes.query import router as query_router
+from app.api.routes.ingest import router as ingest_router
+from app.api.routes.query import router as query_router
 
 app = FastAPI(title="doc-insight")
 
