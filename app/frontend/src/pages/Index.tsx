@@ -7,13 +7,10 @@ const Index = () => {
 
   return (
     <div className="flex h-screen">
-      {/* Sidebar */}
       <UploadSidebar
         totalChunks={totalChunks}
         onIngested={(n) => setTotalChunks((prev) => prev + n)}
       />
-
-      {/* Main chat area */}
       <main className="flex flex-1 flex-col min-h-0">
         <ChatWindow />
       </main>
