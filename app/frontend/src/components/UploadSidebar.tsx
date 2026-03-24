@@ -1,5 +1,6 @@
 import { useState, useRef } from "react";
 import { Upload, FileText, Loader2 } from "lucide-react";
+import ThemeToggle from "./ThemeToggle";
 
 interface UploadSidebarProps {
   totalChunks: number;
@@ -24,12 +25,11 @@ const UploadSidebar = ({ totalChunks, onIngested }: UploadSidebarProps) => {
     const formData = new FormData();
     Array.from(fileList).forEach((f) => formData.append("files", f));
 
-    try {
+    try { 
       const res = await fetch("http://localhost:8000/ingest", { method: "POST", body: formData });
       const data = await res.json();
       const chunks = data.ingested?.reduce((sum: number, f: any) => sum + (f.chunks_ingested ?? 0), 0) ?? 0;
-      const perFile = Math.ceil(chunks / fileList.length);
-      const newFiles = Array.from(fileList).map((f) => ({ name: f.name, chunks: perFile }));
+      const newFiles = data.ingested?.map((f: any) => ({ name: f.doc_id, chunks: f.chunks_ingested ?? 0 })) ?? [];
       setFiles((prev) => [...prev, ...newFiles]);
       setStatus("done");
       onIngested(chunks, newFiles);
@@ -41,9 +41,12 @@ const UploadSidebar = ({ totalChunks, onIngested }: UploadSidebarProps) => {
   return (
     <aside className="flex h-full w-72 shrink-0 flex-col border-r border-sidebar-border bg-sidebar">
       {/* Header */}
-      <div className="px-5 pt-6 pb-2">
-        <h1 className="text-sm font-semibold text-foreground tracking-tight">DocInsight</h1>
-        <p className="text-[11px] text-muted-foreground mt-0.5">Document search assistant</p>
+      <div className="flex items-center justify-between px-5 pt-6 pb-2">
+        <div>
+          <h1 className="text-sm font-semibold text-foreground tracking-tight">DocInsight</h1>
+          <p className="text-[11px] text-muted-foreground mt-0.5">Document search assistant</p>
+        </div>
+        <ThemeToggle />
       </div>
 
       <div className="px-5 pt-4 pb-2">
@@ -53,10 +56,10 @@ const UploadSidebar = ({ totalChunks, onIngested }: UploadSidebarProps) => {
       {/* Drop zone */}
       <div className="px-4 pb-3">
         <div
-          className={`group cursor-pointer rounded-lg border border-dashed p-4 transition-all duration-200 ${
+          className={`group cursor-pointer rounded-lg border p-4 transition-all duration-200 ${
             dragOver
-              ? "border-foreground/30 bg-accent"
-              : "border-sidebar-border hover:border-foreground/20 hover:bg-accent/50"
+              ? "border-ring bg-accent"
+              : "border-border hover:border-ring/50 hover:bg-accent/50"
           }`}
           onClick={() => inputRef.current?.click()}
           onDragOver={(e) => { e.preventDefault(); setDragOver(true); }}

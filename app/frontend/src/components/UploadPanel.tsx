@@ -24,11 +24,11 @@ const UploadPanel = ({ onIngested }: UploadPanelProps) => {
       const data = await res.json();
       const chunks = data.ingested?.reduce((sum: number, f: any) => sum + (f.chunks_ingested ?? 0), 0) ?? 0;
       setStatus("done");
-      setMessage(`✓ ${chunks} חלקים נוספו בהצלחה`);
+      setMessage(`✓ ${chunks} chunks added successfully!`);
       onIngested(chunks);
     } catch {
       setStatus("error");
-      setMessage("שגיאה בהעלאה. ודא שהשרת פועל.");
+      setMessage("error uploading files. Please  make sure the server is running.");
     }
   };
 
