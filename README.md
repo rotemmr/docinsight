@@ -16,7 +16,7 @@ user question  -->  embed question  -->  search ChromaDB  -->  top chunks + ques
  
 ---
 
-## Getting started
+## Quickstart
 
 - clone the repo
 ```bash
