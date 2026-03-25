@@ -1,6 +1,6 @@
 services:
 
-  app:
+  backend:
     build: .
     ports: 
     - "8000:8000"
@@ -11,3 +11,15 @@ services:
 
     env_file:
       - path: .env
+
+  frontend:
+    build: ./app/frontend
+    ports:
+      - "8080:8080"
+    volumes: 
+      - ./app/frontend:/app              # live code reload without rebuilding
+      - /app/node_modules              # dont overwrite node_modules within container
+    depends_on:
+      - backend
+    environment:
+      - VITE_API_URL=http://localhost:8000
