@@ -2,6 +2,8 @@
 internal searching | RAG-based
 
 
+## Logic
+
 **Ingestion**
 ```
 upload documents (PDF/EXCEL)  -->  extract text  -->  split into chunks  -->  embedding  -->  store in ChromaDB
@@ -14,7 +16,7 @@ user question  -->  embed question  -->  search ChromaDB  -->  top chunks + ques
  
 ---
 
-## getting started
+## Getting started
 
 - clone the repo
 ```bash
