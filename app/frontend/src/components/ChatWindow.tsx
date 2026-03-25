@@ -99,9 +99,9 @@ const ChatWindow = () => {
                 <Sparkles className="h-6 w-6 text-muted-foreground" />
               </div>
               <div className="space-y-1.5">
-                <p className="text-base font-medium text-foreground/90">DocInsight</p>
+                <p className="text-base font-medium text-foreground/90">docci</p>
                 <p className="text-sm text-muted-foreground max-w-xs">
-                  Upload documents and ask questions about their content
+                  I'm here to analyze your documents and answer any questions you have about them. Just upload your files and start chatting!
                 </p>
               </div>
             </div>

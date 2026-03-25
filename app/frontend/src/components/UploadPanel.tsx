@@ -60,13 +60,13 @@ const UploadPanel = ({ onIngested }: UploadPanelProps) => {
           )}
         </div>
         <div className="flex-1 min-w-0">
-          <p className="text-sm font-medium text-foreground">העלאת מסמכים</p>
+          <p className="text-sm font-medium text-foreground">Upload Documents</p>
           {message ? (
             <p className={`text-xs mt-0.5 ${status === "error" ? "text-destructive" : "text-muted-foreground"}`}>
               {message}
             </p>
           ) : (
-            <p className="text-xs text-muted-foreground mt-0.5">גרור קבצי PDF או Excel לכאן</p>
+            <p className="text-xs text-muted-foreground mt-0.5">Drag and drop PDF or Excel files here</p>
           )}
         </div>
         <button
