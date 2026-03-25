@@ -20,7 +20,7 @@ const UploadPanel = ({ onIngested }: UploadPanelProps) => {
     Array.from(files).forEach((f) => formData.append("files", f));
 
     try {
-      const res = await fetch("http://localhost:8000/ingest", { method: "POST", body: formData });
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/ingest`, { method: "POST", body: formData });
       const data = await res.json();
       const chunks = data.ingested?.reduce((sum: number, f: any) => sum + (f.chunks_ingested ?? 0), 0) ?? 0;
       setStatus("done");
