@@ -24,10 +24,6 @@ def get_answer(question: str, chunks: list[str]) -> str:
 
 Context:
 {context}
-
-
-Context:
-{context}
  
 Question:
 {question}

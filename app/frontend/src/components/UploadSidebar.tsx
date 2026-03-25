@@ -43,8 +43,8 @@ const UploadSidebar = ({ totalChunks, onIngested }: UploadSidebarProps) => {
       {/* Header */}
       <div className="flex items-center justify-between px-5 pt-6 pb-2">
         <div>
-          <h1 className="text-sm font-semibold text-foreground tracking-tight">DocInsight</h1>
-          <p className="text-[11px] text-muted-foreground mt-0.5">Document search assistant</p>
+          <h1 className="text-sm font-semibold text-foreground tracking-tight">docci</h1>
+          {/* SUBTITLE FOR DOCCI : <p className="text-[11px] text-muted-foreground mt-0.5"></p> */} 
         </div>
         <ThemeToggle />
       </div>

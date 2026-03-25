@@ -26,7 +26,9 @@ def ingest_file(file_path: str) -> dict:
     
     # 2. split into chunks
     chunks = chunk_text(raw_text)
-
+    if not chunks:
+        raise ValueError("No text could be extracted from the file.")
+    
     #3. embed all chunks
     embeddings = embed_texts(chunks)
 

@@ -23,3 +23,4 @@ services:
       - backend
     environment:
       - VITE_API_URL=http://localhost:8000
+      - CHOKIDAR_USEPOLLING=true

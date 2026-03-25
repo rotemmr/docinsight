@@ -10,7 +10,7 @@ def add_chunks(chunks: list[str], embeddings: list[list[float]], doc_id: str):
     Each chunk gets a unique ID based on doc_id and its index.
     """
     ids = [f"{doc_id}_chunk_{i}" for i in range(len(chunks))]
-    collection.add(
+    collection.upsert(
         documents=chunks,
         embeddings=embeddings,
         ids=ids,

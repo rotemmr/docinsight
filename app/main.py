@@ -19,7 +19,7 @@ app.include_router(ingest_router)
 app.include_router(query_router)
 
 
-app.get("/")
+@app.get("/")
 def health_check():
     return {"status": "ok"}
 
