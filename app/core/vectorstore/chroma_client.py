@@ -16,6 +16,14 @@ def add_chunks(chunks: list[str], embeddings: list[list[float]], doc_id: str):
         ids=ids,
     )
  
+def clear_collection():
+    """
+    Deletes and recreates the collection, wiping all stored chunks.
+    """
+    client.delete_collection(name=COLLECTION_NAME)
+    global collection
+    collection = client.get_or_create_collection(name=COLLECTION_NAME)
+
 def query_collection(embedding: list[float], n_results: int = 5) -> list[str]:
     """
     Takes a query embedding and returns the top n most similar chunks.

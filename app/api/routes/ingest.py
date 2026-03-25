@@ -5,6 +5,7 @@ from typing import List
 
 
 from app.core.ingestion.ingest import ingest_file
+from app.core.vectorstore.chroma_client import clear_collection
 
 router = APIRouter()
 
@@ -43,3 +44,11 @@ async def ingest(files: List[UploadFile] = File(...)):
                 os.remove(temp_path)
  
     return {"ingested": results}
+
+@router.delete("/clear")
+async def clear():
+    """
+    Wipes all documents from ChromaDB.
+    """
+    clear_collection()
+    return {"status": "cleared"}

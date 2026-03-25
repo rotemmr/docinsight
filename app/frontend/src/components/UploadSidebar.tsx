@@ -1,5 +1,5 @@
 import { useState, useRef } from "react";
-import { Upload, FileText, Loader2 } from "lucide-react";
+import { Upload, FileText, Loader2, Trash2 } from "lucide-react";
 import ThemeToggle from "./ThemeToggle";
 
 interface UploadSidebarProps {
@@ -17,6 +17,12 @@ const UploadSidebar = ({ totalChunks, onIngested }: UploadSidebarProps) => {
   const [dragOver, setDragOver] = useState(false);
   const [files, setFiles] = useState<UploadedFile[]>([]);
   const inputRef = useRef<HTMLInputElement>(null);
+
+  const clear = async () => {
+    await fetch(`${import.meta.env.VITE_API_URL}/clear`, { method: "DELETE" });
+    setFiles([]);
+    onIngested(-totalChunks, []);
+  };
 
   const upload = async (fileList: FileList | File[]) => {
     if (!fileList.length) return;
@@ -49,8 +55,13 @@ const UploadSidebar = ({ totalChunks, onIngested }: UploadSidebarProps) => {
         <ThemeToggle />
       </div>
 
-      <div className="px-5 pt-4 pb-2">
+      <div className="px-5 pt-4 pb-2 flex items-center justify-between">
         <h2 className="text-[11px] font-medium uppercase tracking-widest text-sidebar-heading">Documents</h2>
+        {files.length > 0 && (
+          <button onClick={clear} className="text-muted-foreground hover:text-destructive transition-colors">
+            <Trash2 className="h-3.5 w-3.5" />
+          </button>
+        )}
       </div>
 
       {/* Drop zone */}
